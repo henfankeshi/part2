@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+        <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="../../static/css/semantic.min.css">
+        <script src="../../static/js/semantic.min.js"></script>
+        <link rel="icon" href="../../static/images/icon.png">
+</head>
+<body style="background-color: gray;">
+<a href="/admin/right" target="rightFrame" class="btn btn-default"><button class="ui inverted button">后台首页</button></a><br>
+<a href="/admin/comicmain" th:href="@{/admin/comicmain}" target="rightFrame" class="btn btn-default"><button class="ui inverted button">漫画管理</button></a><br>
+<a href="/admin/UserList" th:href="@{/admin/UserList}" target="rightFrame" class="btn btn-default"><button class="ui inverted button">用户管理</button></a><br>
+<a href="/admin/recentupdates" target="rightFrame" class="btn btn-default"><button class="ui inverted button">最近更新</button></a><br>
+<a href="/admin/trailer" th:href="@{/admin/trailer}" target="rightFrame" class="btn btn-default"><button class="ui inverted button">更新预告</button></a><br>
+<a href="/admin/recommended" target="rightFrame" class="btn btn-default"><button class="ui inverted button">精品力荐</button></a><br>
+<a href="/admin/hyperlinks" target="rightFrame" class="btn btn-default"><button class="ui inverted button">友情链接</button></a><br>
+<a href="/admin/comicrank" th:href="@{/admin/comicrank}" target="rightFrame" class="btn btn-default"><button class="ui inverted button">漫画排行</button></a><br>
+<a href="/admin/feedbacklist" th:href="@{/admin/feedbacklist}" target="rightFrame" class="btn btn-default"><button class="ui inverted button">反馈列表</button></a><br>
+
+</body>
+</html>

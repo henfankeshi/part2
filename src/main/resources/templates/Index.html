@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../static/css/index.css" th:href="@{/static/css/index.css}">
+    <link rel="stylesheet" type="text/css" href="../static/css/bootstrap.min.css" th:href="@{/static/css/bootstrap.min.css}">
+    <link rel="shortcut icon" href="../static/images/icon.png" type="image/x-icon" th:href="@{/static/images/icon.png}">
+    <script src="../static/js/jquery.min.js" th:src="@{/static/js/jquery.min.js}"></script>
+    <script src="../static/js/bootstrap.min.js" th:src="@{/static/js/bootstrap.min.js}"></script>
+    <title>漫画堆</title>
+    <style>
+          .username{
+              position: relative;
+              display: inline-block;
+              cursor: pointer;
+          }
+          .username-myinformation{
+              display: none;
+              position: absolute;
+              background-color: whitesmoke;
+              box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+              min-width: 70px;
+              min-height: 20px;
+              border-top: 1px black solid;
+          }
+        .username-myinformation a{
+             color: black;
+             text-decoration: none;
+             display: block;
+        }
+        .username:hover .username-myinformation{
+             display: block;
+        }
+    </style>
+</head>
+<body>
+       <!--导航 -->
+       <nav th:replace="_fragments :: menu(1)">
+            <ul>
+                <li class="nav-left">轻小说</li>
+                <div class="nav-right">
+
+                    <div class="username"    th:unless="${#strings.isEmpty(session.user)}"  >
+                        <img src="http://www.005.tv/uploads/allimg/170412/141T33A5-0.jpg" title="" th:unless="${#strings.isEmpty(session.user)}" th:title="${session.user.username}"  style="max-height: 30px;max-width: 30px;border-radius: 50%">
+                        <span  th:text="${session.user.username}" name="user_name"></span>
+                        <div class="username-myinformation">
+                            <a href="/u">个人中心</a>
+                        </div>
+                    </div>
+                   <span th:unless="${not#strings.isEmpty(session.user)}">
+                <li class="nav-right-li" ><a  href="/login" >登录</a></li>
+                <li class="nav-right-li">|</li>
+                <li class="nav-right-li" ><a  href="/register" >注册</a></li>
+                  </span>
+                </div>
+            </ul>
+        </nav>
+
+       <!--背景图片,搜索框以及轮播图片-->
+       <div class="Box-bg">
+           <div class="Box-serach">
+                <div class="Box-serach-logo"><img src="../static/images/logo.png"></div>
+                <div class="Box-serach-s">
+                    <form action="/serachmh" th:action="@{/serachmh}" method="GET" id="form">
+                    <input type="search" placeholder="请输入关键字..." id="serach" name="Keywords" autocomplete="off">
+                    <button type="submit" onclick="return serachbutton()">搜索</button>
+                    </form>
+                    <script>
+
+                    </script>
+                    <ul>
+                         <li><a href="/jinjidejuren" th:href="@{/comic(id=${1})}">一拳超人</a></li>
+                         <li><a href="/jinjidejuren" th:href="@{/comic(id=${2})}">进击的巨人</a></li>
+                         <li><a href="/jinjidejuren" th:href="@{/comic(id=${31})}">小智怪谈</a></li>
+                         <li><a href="/jinjidejuren" th:href="@{/comic(id=${4})}">地狱星</a></li>
+                         <li><a href="/jinjidejuren" th:href="@{/comic(id=${30})}">镖人</a></li>
+                         <li><a href="/jinjidejuren" th:href="@{/comic(id=${3})}">黑水潭</a></li>
+                    </ul>
+                </div>
+                <div class="Box-serach-text"><p id="#p1">漫画堆&nbsp;-&nbsp;好看的漫<br><span>画一大堆!</span></p></div>
+           </div>
+           <div class="comic-type">
+                   <ul>
+                       <li class="type-two" id="focus"><a href="#" th:href="@{/}">首页</a></li>
+                       <li class="type-two"><a href="#" >日漫</a></li>
+                       <li class="type-two"><a href="#" >国漫</a></li>
+                       <li class="type-two"><a href="#" >美漫</a></li>
+                       <li class="type-two"><a href="#" >连载</a></li>
+                       <li class="type-two"><a href="#" >完结</a></li>
+                       <li class="type-four"><a href="#" >最近更新</a></li>
+                       <li class="type-three"><a href="#" >排行榜</a></li>
+                       <li class="type-four"><a href="#" >全部漫画</a></li>
+                       <li class="type-center"><a href="#">会员中心</a></li>
+                   </ul>
+            </div>
+
+            <!-- 图片 -->
+            <div class="shuffling">
+                 <div class="shuffing-left">
+                      <a href="#"><div class="shuffing-left-big">
+                          <p>海贼王-我是要成为海贼王的男人</p>
+                      </div>
+                      </a>
+                      <div class="shuffing-left-small">
+                          <ul>
+                              <a href="#" ><li style="background-image: url(../static/picture/juren.jpg);background-size: 220px 188px;background-repeat: no-repeat;"><p>进击的巨人-巨人的秘密</p></li></a>
+                              <a href="#" ><li style="background-image: url(../static/picture/qiyuanzui.jpg);background-size: 220px 188px;background-repeat: no-repeat;"><p>七原罪-七个天主教的罪过</p></li></a>
+                              <a href="#" ></a><li style="background-image: url(../static/picture/doupo.jpg);background-size: 220px 188px;background-repeat: no-repeat;"><p>斗破苍穹-斗气的世界</p></li></a>
+                              <a href="#" ><li style="background-image: url(../static/picture/chitianshi.jpg);background-size: 220px 188px;background-repeat: no-repeat;"><p>终结的炽天使-吸血鬼的战争</p></li></a>
+                          </ul>
+                      </div>
+                 </div>
+                 <!--月排行-->
+                 <div class="shuffing-right">
+                     <div class="shuffing-right-top">
+                         <h2>点击排行</h2>
+                         <div class="shuffing-right-top-right">
+                             <ul>
+                             <li class="months" onmousemove="move()">月</li>
+                             <li class="week" id="week" onmousemove="movein()">周</li>
+                            </ul>
+                         </div>
+                     </div>
+                     <div class="shuffing-right-main" >
+                         <a href="#"><img src="../static/images/01.png" title="一拳超人" style="width: 70px;height: 90px;float: left;"></a>
+                         <p><a href="#" style="color: black;">一拳超人</a></p>
+                         <p>作者:&nbsp;&nbsp;村田雄介,one</p>
+                         <p>更新至163话</p>
+                     </div>
+
+                     <div class="shuffing-right-list">
+                         <ul >
+                             <li th:each="paiming : ${paiming}">
+                                 <em class="em-list" th:text="${paiming.c_number}">2</em>
+                                 <a href="#" title="进击的巨人" class="titlename" th:title="${paiming.c_name}">
+                                     <span th:text="${paiming.c_name}">进击的巨人</span>
+                                 </a>
+                                 <a href="#" class="titlelist" title="进击的巨人" th:title="${paiming.c_name}">
+                                     <span th:text="${paiming.c_words}">100话</span>话
+                                 </a>
+                             </li>
+                             <!--
+
+                             <li><em class="em-list">2</em><a href="#" title="进击的巨人" class="titlename"><span>进击的巨人</span></a><a href="#" class="titlelist" title="进击的巨人"><span>100话</span></a></li>
+                             <li><em class="em-list">3</em><a href="#" title="海贼王" class="titlename"><span>海贼王</span></a><a href="#" class="titlelist" title="海贼王"><span>100话</span></a></li>
+                             <li><em class="em-list">4</em><a href="#" title="斗破苍穹" class="titlename"><span>斗破苍穹</span></a><a href="#" class="titlelist" title="斗破苍穹"><span>100话</span></a></li>
+                             <li><em class="em-list">5</em><a href="#" title="野良神" class="titlename"><span>野良神</span></a><a href="#" class="titlelist" title="野良神"><span>100话</span></a></li>
+                             <li><em class="em-list">6</em><a href="#" title="黑色五叶草" class="titlename"><span>黑色五叶草</span></a><a href="#" class="titlelist" title="黑色五叶草"><span>100话</span></a></li>
+                             <li><em class="em-list">7</em><a href="#" title="黑水潭" class="titlename"><span>黑水潭</span></a><a href="#" class="titlelist" title="黑水潭"><span>100话</span></a></li>
+                             <li><em class="em-list">8</em><a href="#" title="镖人" class="titlename"><span>镖人</span></a><a href="#" class="titlelist" title="镖人"><span>100话</span></a></li>
+                             <li><em class="em-list">9</em><a href="#" title="小智怪谈" class="titlename"><span>小智怪谈</span></a><a href="#" class="titlelist" title="小智怪谈"><span>100话</span></a></li>
+                             <li><em class="em-list">10</em><a href="#" title="破坏兽" class="titlename"><span>破坏兽</span></a><a href="#" class="titlelist" title="破坏兽"><span>100话</span></a></li>
+                               -->
+                         </ul>
+                     </div>
+                 </div>
+            </div>
+        </div>
+         <!--最近更新模块-->
+         <div class="newupdate">
+             <div class="newupdate-left">
+                    <div class="newupdate-left-title">
+                         <span class="newupdate-left-title-span01">最近<font style="color: #1790e6;">更新</font></span>
+                         <span class="newupdate-left-title-span02">UPDATE</span>
+                         <span class="newupdate-left-title-span03"><a href="#" style="color:#666;" title="更多">MORE+</a></span>
+                    </div>
+                    <div class="newupdate-left-list">
+                         <div class="list-images" th:each="z : ${zuijinggengxin}">
+                             <a href="#" th:href="@{/comic(id=${z.id})}" title="神国" th:title="${z.mhname}">
+                             <img src="../static/picture/shneguo.jpg" th:src="${z.imgurl}">
+                             </a>
+                             <p th:text="${z.mhname}"><a href="#" title="神国" th:title="${z.mhname}">神国</a></p>
+                             <p class="author" th:text="${z.authorname}">image</p>
+                         </div>
+
+                         <!--<div class="list-images">-->
+                                <!--<a href="#" title="法庭新鲜人">-->
+                                <!--<img src="../static/picture/fating.jpg">-->
+                                <!--</a>-->
+                                <!--<p><a href="#" title="法庭新鲜人">法庭新鲜人</a></p>-->
+                                <!--<p class="author">麻生美琴</p>-->
+                         <!--</div>-->
+
+                         <!--<div class="list-images">-->
+                                <!--<a href="#" title="神国"><img src="../static/picture/quanshen.jpg"></a>-->
+                                   <!--<p><a href="#" title="神国">神国</a></p>-->
+                             <!--<p class="author">author</p>-->
+                         <!--</div>-->
+
+                         <!--<div class="list-images">-->
+                                <!--<a href="#" title="神国"><img src="../static/picture/heise.jpg"></a>-->
+                                   <!--<p><a href="#" title="神国">神国</a></p>-->
+                             <!--<p class="author">author</p>-->
+                         <!--</div>-->
+
+                         <!--<div class="list-images">-->
+                                <!--<a href="#" title="神国"><img src="../static/picture/xueyuanzuzhou.jpg"></a>-->
+                                   <!--<p><a href="#" title="神国">神国</a></p>-->
+                             <!--<p class="author">author</p>-->
+                         <!--</div>-->
+
+                         <!--<div class="list-images">-->
+                                <!--<a href="#" title="神国"><img src="../static/picture/danqingmama.jpg"></a>-->
+                                   <!--<p><a href="#" title="神国">神国</a></p>-->
+                             <!--<p class="author">author</p>-->
+                         <!--</div>-->
+
+                    </div>
+             </div>
+             <div class="newupdate-right">
+                 <div class="newupdate-right-top">
+                     <p>更新预告</p>
+                 </div>
+                 <div class="newupdate-right-text" >
+                     <ul th:each="gengxin : ${gengxin}" style="padding: 0px;margin: 0px">
+                         <li ><a href=""><font th:text="${gengxin.up_name}">进击的巨人</font></a><span th:text="${gengxin.up_wors}">每月7-9号更新</span></li>
+                    <!--     <li><a href="">海贼王</a><span>每周四更新</span></li>
+                         <li><a href="">进击的巨人</a><span>每月5号更新</span></li>
+                         <li><a href="">进击的巨人</a><span>每周更新3话</span></li>
+                         <li><a href="">进击的巨人</a><span>每周六更新</span></li>
+                         <li><a href="">进击的巨人</a><span>每周一更新</span></li>
+                         <li><a href="">进击的巨人</a><span>每周四更新</span></li>
+                         <li><a href="">进击的巨人</a><span>每周一更新</span></li>
+                     -->
+                     </ul>
+                 </div>
+             </div>
+         </div>
+         
+         <!--精品力荐模块-->
+         <div class="tuijian">
+            <div class="newupdate-left">
+                   <div class="newupdate-left-title">
+                        <span class="newupdate-left-title-span01">精品<font style="color: #1790e6;">力荐</font></span>
+                        <span class="newupdate-left-title-span02">RECOMMEND</span>
+                        <span class="newupdate-left-title-span03"><a href="#" style="color:#666;" title="更多">MORE+</a></span>
+                   </div>
+                   <div class="newupdate-left-list">
+                        <div class="list-images" th:each="tuijian : ${tuijian}">
+                            <a href="#" th:href="@{/comics(r_id=${tuijian.r_id})}" title="医等狂兵" th:title="${tuijian.name}">
+                            <img src="../static/picture/yidengkuangbing.jpg" th:src="${tuijian.imgurl}">
+                            </a>
+                            <p th:text="${tuijian.name}"><a href="#" title="医等狂兵">医等狂兵</a></p>
+                            <p class="author" th:text="${tuijian.author}">二次元动漫</p>
+                        </div>
+
+                        <!--<div class="list-images">-->
+                               <!--<a href="#" title="都市仙王">-->
+                               <!--<img src="../static/picture/dushixianwang.jpg">-->
+                               <!--</a>-->
+                               <!--<p><a href="#" title="都市仙王">都市仙王</a></p>-->
+                               <!--<p class="author">博易动漫</p>-->
+                        <!--</div>-->
+
+                        <!--<div class="list-images">-->
+                               <!--<a href="#" title="宅男救世主"><img src="../static/picture/zhainanjiushizhu.jpg"></a>-->
+                                  <!--<p><a href="#" title="宅男救世主">宅男救世主</a></p>-->
+                            <!--<p class="author">破界互动</p>-->
+                        <!--</div>-->
+
+                        <!--<div class="list-images">-->
+                               <!--<a href="#" title="五等分的花嫁"><img src="../static/picture/wudengfengdehuajia.jpg"></a>-->
+                                  <!--<p><a href="#" title="五等分的花嫁">五等分的花嫁</a></p>-->
+                            <!--<p class="author">春场葱</p>-->
+                        <!--</div>-->
+
+                        <!--<div class="list-images">-->
+                               <!--<a href="#" title="隐婚总裁被乱来"><img src="../static/picture/yinkunzongcai.jpg"></a>-->
+                                  <!--<p><a href="#" title="隐婚总裁被乱来">隐婚总裁被乱来</a></p>-->
+                            <!--<p class="author">宝藏漫画</p>-->
+                        <!--</div>-->
+
+                        <!--<div class="list-images">-->
+                               <!--<a href="#" title="重生之都市狂仙"><img src="../static/picture/chongshengzhi.jpg"></a>-->
+                                  <!--<p><a href="#" title="重生之都市狂仙">重生之都市狂仙</a></p>-->
+                            <!--<p class="author">阿里文学</p>-->
+                        <!--</div>-->
+
+                   </div>
+            </div>
+            <div class="tuijian-right">
+                  <div class="tuijian-right-img">
+                       <a href="#"><img src="../static/picture/jingpinglijianjinjidejuren.jpg" style="width: 310px;"></a>
+                  </div>
+                  <div class="tuijian-right-img" style="margin-top: 20px;">
+                    <a href="#"><img src="../static/picture/jingpinglijiandongjingshishigui.jpg" style="width: 310px;"></a>
+                </div>
+            </div>
+        </div>
+        
+        <!--少年漫画-->
+        <!--少女漫画-->
+        <!--漫画导航栏-->
+        <!--友情链接-->
+        <div class="friend-a">
+              <div  class="friend-a-text">友情链接</div>
+              <div  class="friend-a-lianjie" >
+                  <div class="lianjie-list" style="padding-left: 15px;" th:each="links : ${links}"><a  href="" th:href="@{/go(url=${links.url})}" th:title="${links.url}" target="_blank"><font th:text="${links.name}">进击的巨人漫画</font></a></div>
+                  <!--<div class="lianjie-list"><a href="#">海贼王漫画</a></div>-->
+                  <!--<div class="lianjie-list"><a href="#">斗破苍穹漫画</a></div>-->
+                  <!--<div class="lianjie-list"><a href="#">一拳超人漫画</a></div>-->
+                  <!--<div class="lianjie-list"><a href="#">绝世唐门漫画</a></div>-->
+              </div>
+        </div>
+        <!--底部-->
+       <div class="manhua-botton">
+            <div class="block-title">
+                <p class="block-title-text">关于</p>
+                <span><a href="/about" class="block-a" target="_blank">关于我们</a></span>
+                <span><a href="/about" class="block-a" target="_blank">免责声明</a></span>
+            </div>
+            <div class="block-title">
+                <p class="block-title-text">合作</p>
+                <span><a href="/about" class="block-a" target="_blank">作者合作</a></span>
+            </div>
+            <div class="block-title">
+                <p class="block-title-text">漫画堆</p>
+                <span class="block-a">所有漫画均来自网友分享，以便漫画爱好者研究漫画技巧和构图方式。若喜欢，请购买正版书籍以支持作者！漫画版权归原作者所有。如有侵犯到您的权益，请联系我们，确认之后立即删除。本站不负任何相关责任！ ©2019 <a href="/index" class=".bloack-a" target="_blank">漫画堆</a></span>
+            </div>
+       </div>
+
+
+
+        <script src="../static/js/index.js" th:src="@{/static/js/index.js}"></script>
+  
+</body>
+</html>

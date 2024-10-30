@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../static/css/semantic.min.css">
+    <script src="../../static/js/semantic.min.js"></script>
+    <link rel="icon" href="../../static/images/icon.png">
+    <!--加入Javaex框架-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/icomoon.css" rel="stylesheet" />
+    <!--动画-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/animate.css" rel="stylesheet" />
+    <!--骨架样式-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/common.css" rel="stylesheet" />
+    <!--皮肤（缇娜）-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/skin/tina.css" rel="stylesheet" />
+    <!--jquery，不可修改版本-->
+    <script src="http://cdn.javaex.cn/javaex/pc/lib/jquery-1.7.2.min.js"></script>
+    <!--全局动态修改-->
+    <script src="http://cdn.javaex.cn/javaex/pc/js/common.js"></script>
+    <!--核心组件-->
+    <script src="http://cdn.javaex.cn/javaex/pc/js/javaex.min.js"></script>
+    <!--表单验证-->
+    <script src="http://cdn.javaex.cn/javaex/pc/js/javaex-formVerify.js"></script>
+
+    <title>更新预告</title>
+</head>
+<body>
+<button class="ui primary button" id="addtrailer">添加更新预告</button>
+<script>
+    $('#addtrailer').click(function () {
+            javaex.dialog({
+                type: "dialog",
+                width: "400",
+                height: "300",
+                url: "/admin/addtrailer"
+            });
+    });
+</script>
+<table class="ui celled table">
+    <thead>
+    <tr>
+        <th>漫画名</th>
+        <th>更新时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="trailer : ${trailer}">
+        <td th:text="${trailer.up_name}">一拳超人</td>
+        <td th:text="${trailer.up_wors}">每周四</td>
+        <td><a href="" th:href="@{/admin/deletetrailer(u_id=${trailer.up_id})}" name="u_id">删除</a></td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+    </tr></tfoot>
+</table>
+</body>
+</html>

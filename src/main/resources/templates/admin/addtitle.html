@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../static/css/semantic.min.css">
+    <script src="../../static/js/semantic.min.js"></script>
+    <link rel="icon" href="../../static/images/icon.png">
+    <!--加入Javaex框架-->
+    <!--<link href="http://cdn.javaex.cn/javaex/pc/css/icomoon.css" rel="stylesheet" />-->
+    <!--&lt;!&ndash;动画&ndash;&gt;-->
+    <!--<link href="http://cdn.javaex.cn/javaex/pc/css/animate.css" rel="stylesheet" />-->
+    <!--&lt;!&ndash;骨架样式&ndash;&gt;-->
+    <!--<link href="http://cdn.javaex.cn/javaex/pc/css/common.css" rel="stylesheet" />-->
+    <!--&lt;!&ndash;皮肤（缇娜）&ndash;&gt;-->
+    <!--<link href="http://cdn.javaex.cn/javaex/pc/css/skin/tina.css" rel="stylesheet" />-->
+    <!--&lt;!&ndash;jquery，不可修改版本&ndash;&gt;-->
+    <!--<script src="http://cdn.javaex.cn/javaex/pc/lib/jquery-1.7.2.min.js"></script>-->
+    <!--&lt;!&ndash;全局动态修改&ndash;&gt;-->
+    <!--<script src="http://cdn.javaex.cn/javaex/pc/js/common.js"></script>-->
+    <!--&lt;!&ndash;核心组件&ndash;&gt;-->
+    <!--<script src="http://cdn.javaex.cn/javaex/pc/js/javaex.min.js"></script>-->
+    <!--&lt;!&ndash;表单验证&ndash;&gt;-->
+    <!--<script src="http://cdn.javaex.cn/javaex/pc/js/javaex-formVerify.js"></script>-->
+    <title>添加章节列表</title>
+</head>
+<body>
+<div style="margin-top: 20px;margin-left: 50px">
+    <form action="/admin/AddTitle" method="get" th:action="@{/admin/AddTitle}">
+        漫画ID:
+        <div class="ui disabled input">
+        <input type="text" class="text" name="id" th:value="${id}" />
+        </div>
+        <br>
+        标题:
+        <div class="ui input">
+        <input type="text" class="text readonly" name="title" id="title" autocomplete="off"/>
+        </div>
+        <br>
+        <button class="ui primary button" type="submit" id="success" onclick="return addcheck()">提交</button>
+    </form>
+    <p th:text="${message}"></p>
+    <p></p>
+</div>
+<script>
+    function addcheck() {
+        var title = document.getElementById('title');
+        if(title.value=="") {
+            alert("标题不能为空");
+            title.focus();
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
+</body>
+</html>

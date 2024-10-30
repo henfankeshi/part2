@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="../static/css/index.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="shortcut icon" href="../static/images/icon.png" type="image/x-icon">
+    <script src="../static/js/index.js"></script>
+    <title>进击的巨人</title>
+    <style>
+        .username{
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .username-myinformation{
+            display: none;
+            position: absolute;
+            background-color: whitesmoke;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            min-width: 70px;
+            min-height: 20px;
+            border-top: 1px black solid;
+        }
+        .username-myinformation a{
+            color: black;
+            text-decoration: none;
+            display: block;
+        }
+        .username:hover .username-myinformation{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+     <!--导航 -->
+     <nav th:replace="_fragments :: menu(1)">
+        <ul>
+            <li class="nav-left">轻小说</li>
+            <div class="nav-right">
+            <li class="nav-right-li"><a  href="/login" target="_blank">登录</a></li>
+            <li class="nav-right-li">|</li>
+            <li class="nav-right-li"><a  href="/register" target="_blank">注册</a></li>
+            </div>
+        </ul>
+    </nav>
+
+    <!--背景图片,搜索框以及轮播图片-->
+    <div class="Box-bg" style="background-image: url(../static/images/mhd9.jpg);">
+        <div class="Box-serach">
+             <div class="Box-serach-logo"><img src="../static/images/logo.png"></div>
+             <div class="Box-serach-s">
+                 <form action="/serachmh" method="GET" th:action="@{/serachmh}">
+                 <input type="search" placeholder="请输入关键字..." id="serach" name="Keywords" autocomplete="off">
+                 <button type="submit" onclick="return serachbutton()">搜索</button>
+                 </form>
+                 <ul>
+                     <li><a href="/jinjidejuren" th:href="@{/comic(id=${1})}">一拳超人</a></li>
+                     <li><a href="/jinjidejuren" th:href="@{/comic(id=${2})}">进击的巨人</a></li>
+                     <li><a href="/jinjidejuren" th:href="@{/comic(id=${31})}">小智怪谈</a></li>
+                     <li><a href="/jinjidejuren" th:href="@{/comic(id=${4})}">地狱星</a></li>
+                     <li><a href="/jinjidejuren" th:href="@{/comic(id=${30})}">镖人</a></li>
+                     <li><a href="/jinjidejuren" th:href="@{/comic(id=${3})}">黑水潭</a></li>
+                 </ul>
+             </div>
+             <div class="Box-serach-text"><p id="#p1">漫画堆&nbsp;-&nbsp;好看的漫<br><span>画一大堆!</span></p></div>
+        </div>
+        <div class="comic-type">
+                <ul>
+                    <li class="type-two"><a href="#" th:href="@{/}">首页</a></li>
+                    <li class="type-two"><a href="#" >日漫</a></li>
+                    <li class="type-two"><a href="#" >国漫</a></li>
+                    <li class="type-two"><a href="#" >美漫</a></li>
+                    <li class="type-two"><a href="#" >连载</a></li>
+                    <li class="type-two"><a href="#" >完结</a></li>
+                    <li class="type-four"><a href="#" >最近更新</a></li>
+                    <li class="type-three"><a href="#" >排行榜</a></li>
+                    <li class="type-four"><a href="#" >全部漫画</a></li>
+                    <li class="type-center"><a href="#">会员中心</a></li>
+                </ul>
+         </div>
+         <!--漫画详情-->
+         <div class="manhua-information">
+             <div class="manhua-information-img">
+                 <img src="../static/images/messagejinjidejuren.jpg" th:src="${m.imgurl}" alt="进击的巨人" title="进击的巨人" style="width: 207px;height: 278px;">
+             </div>
+             <div class="manhua-information-right">
+                 <p style="font-size: 32px;" th:text="${m.mhname}">进击的巨人</p>
+                 <p style="font-size: 14px;"><span>作者：<a href="#" th:text="${m.authorname}">谏山创</a></span><span>状态：<a href="#" th:text="${m.state}">连载中</a></span></p>
+                 <p style="font-size: 14px;"><span>类别：<a href="#" th:text="${m.category}">少年漫画</a></span><span>类型：<a href="#" th:text="${m.type}">热血</a></span></p>
+                 <p style="font-size: 14px;"><span>地区：<a href="#" th:text="${m.region}">日本</a></span><span>别名： <font th:text="${m.alias}">進擊の巨人</font></span></p>
+                 <p style="font-size: 12px;color: #999;padding-top: 15px;" th:text="${m.introduction}">进击的巨人漫画。这部作品是日本漫画家谏山创所著。107年前（743年），世界上突然出现了人类的天敌“巨人”。面临着生存危机而残存下来的人类逃到了一个地方，盖起了三重巨大的城墙。人们在这隔绝的环境里享受了一百多年的和平，直到艾伦·耶格尔十二岁那年，60米高的“超大型巨人”突然出现，以压倒性的力量破坏城门，其后瞬间消失，巨人们成群的冲 进墙内捕食人类。艾伦亲眼看着人们以及自己的母亲被巨人吞食，怀着对巨人无法形容的憎恨，誓言杀死所有巨人。城墙崩坏的两年后，艾伦加入104期训练兵团学习和巨人战斗的技术。在训练兵团的三年，艾伦在同期训练兵里有着其他人无法比拟的强悍精神力。即使亲眼见过地狱也依然勇敢地向巨人挑战的艾伦，如愿以偿加入了向往已久的调查兵团。在他正做着到墙壁的外面去这个梦的时候，毁坏墙壁的超大巨人出现了！</p>
+             </div>
+         </div>
+         <!--作者信息-->
+         <div class="author-information">
+             <div class="author-img">
+                 <img src="https://cn.bing.com/th?id=OIP.ttgHVPc7cbPwRxPz9zyDDwHaEK&pid=Api&rs=1" style="width: 100px;height: 100px;">
+             </div>
+             <div class="author-name">
+                 <p style="font-size: 18px;" th:text="${m.authorname}">谏山创</p>
+                 <p style="font-size: 12px;color: #666;margin-top: 6px;">作品：<font th:text="${m.size}">0</font>部</p>
+             </div>
+             <div class="author-message">
+                 <p style="font-size: 18px;color: #fe5419;padding-left: 15px;">作者公告</p>
+                 <p style="font-size: 12px;color: #666;padding-top: 10px;padding-left: 15px;" th:text="${m.announcement}">进击的巨人125待更新</p>
+                 <!--<p style="font-size: 12px;color: #666;padding-top: 10px;padding-left: 15px;">进击的巨人漫画观看地址：</p>-->
+                 <!--<p style="font-size: 12px;color: #666;padding-top: 10px;padding-left: 6px;">https://www.manhuadui.com/manhua/jinjidejuren/</p>-->
+             </div>
+         </div>
+         <!--警告-->
+    </div>
+    <!--警告-->
+    <div class="jinggao">
+        <p>警告：《<span th:text="${m.mhname}">进击的巨人</span>》 漫画仅供试看，若喜欢，请支持购买正版。如作者不希望该漫画出现在本站，请联系我们删除。</p>
+    </div>
+    <!--漫画目录-->
+    <div class="manhuamulu">
+        <div class="manhuamulu-title">
+            <div class="manhuamulu-title-icon"></div>
+            <p><font th:text="${m.mhname}">进击的巨人漫画</font><span style="color: #1790e6;padding-left: 15px;">章节列表</span><span style="font-size: 12px;color: #666;padding-left: 30px;">[ 更新时间：<font th:text="${time}">2019-12-06 12:57</font> ]</span></p>
+        </div>
+        <div class="mhlist" style="width: 100%;height: 60px;">
+            <span th:each="list : ${list}">
+                <a href="https://www.baidu.com" th:title="${list.title}" th:href="@{/manhua(id=(${list.id}))}">
+                    <i class="fa fa-file-text-o"></i><font th:text="${list.title}">124话融化</font>
+                </a>
+            </span>
+            <!--<span><a href="https://www.baidu.com" ><i class="fa fa-file-text-o"></i><font>124话融化</font></a></span>-->
+            <!--<span><a href="https://www.baidu.com" ><i class="fa fa-file-text-o"></i><font>124话融化</font></a></span>-->
+            <!--<span><a href="https://www.baidu.com" ><i class="fa fa-file-text-o"></i><font>124话融化</font></a></span>-->
+        </div>
+
+    </div>
+
+    <!--底部-->
+    <div class="manhua-botton">
+        <div class="block-title">
+            <p class="block-title-text">关于</p>
+            <span><a href="#" class="block-a">关于我们</a></span>
+            <span><a href="#" class="block-a">免责声明</a></span>
+        </div>
+        <div class="block-title">
+            <p class="block-title-text">合作</p>
+            <span><a href="#" class="block-a">作者合作</a></span>
+        </div>
+        <div class="block-title">
+            <p class="block-title-text">漫画堆</p>
+            <span class="block-a">所有漫画均来自网友分享，以便漫画爱好者研究漫画技巧和构图方式。若喜欢，请购买正版书籍以支持作者！漫画版权归原作者所有。如有侵犯到您的权益，请联系我们，确认之后立即删除。本站不负任何相关责任！ ©2019 <a href="#" class=".bloack-a" style="color: #337ab7;">漫画堆</a></span>
+        </div>
+   </div>
+
+
+</body>
+</html>

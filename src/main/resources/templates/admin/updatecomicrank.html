@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../static/css/semantic.min.css">
+    <script src="../../static/js/semantic.min.js"></script>
+    <link rel="icon" href="../../static/images/icon.png">
+    <title>修改漫画</title>
+</head>
+<body>
+<center>
+
+当前排名：
+    <div class="ui disabled input">
+        <input type="text" placeholder="当前排名" th:value="${c.c_number}">
+    </div>
+
+    <br>
+    <form action="" method="get" th:action="@{/admin/updatepaiming}">
+    漫画名称：
+<div class="ui input">
+    <input type="text" placeholder="漫画名称" th:value="${c.c_name}" name="c_name">
+</div>
+    <br>
+    当前更新到：
+    <div class="ui input">
+        <input type="text" placeholder="漫画更新" th:value="${c.c_words}" name="c_words">
+    </div>
+    <br>
+    <input type="hidden" name="c_id" th:value="${c.c_id}">
+    <button class="ui primary button" type="submit" id="success">
+        保存修改
+    </button>
+</form>
+
+</center>
+
+</body>
+</html>

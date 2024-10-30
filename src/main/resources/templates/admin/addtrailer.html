@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="http://cdn.javaex.cn/javaex/pc/css/icomoon.css" rel="stylesheet" />
+    <!--动画-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/animate.css" rel="stylesheet" />
+    <!--骨架样式-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/common.css" rel="stylesheet" />
+    <!--皮肤（缇娜）-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/skin/tina.css" rel="stylesheet" />
+    <!--jquery，不可修改版本-->
+    <script src="http://cdn.javaex.cn/javaex/pc/lib/jquery-1.7.2.min.js"></script>
+    <!--全局动态修改-->
+    <script src="http://cdn.javaex.cn/javaex/pc/js/common.js"></script>
+    <!--核心组件-->
+    <script src="http://cdn.javaex.cn/javaex/pc/js/javaex.min.js"></script>
+    <!--表单验证-->
+    <script src="http://cdn.javaex.cn/javaex/pc/js/javaex-formVerify.js"></script>
+    <title>添加更新</title>
+    <style>
+        form{
+            margin-top: 40px;
+            margin-left: 90px;
+        }
+    </style>
+</head>
+<body>
+<form action="/admin/Addtrailer" method="get" th:action="@{/admin/Addtrailer}">
+      漫画名称:<input type="text" class="text" autocomplete="off" name="up_name"/><br>
+      更新时间:<input type="text" class="text" autocomplete="off" name="up_wors" style="margin-top: 30px"/><br>
+      <button class="button blue" type="submit" style="margin-left: 80px;margin-top: 30px;">提交</button>
+</form>
+<span th:text="${message}" th:unless="${#strings.isEmpty(message)}" style="margin-left: 80px;color: #00aaee;"></span>
+</body>
+</html>

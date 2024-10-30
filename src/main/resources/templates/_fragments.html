@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/u.css" th:href="@{/css/u.css}">
+    <title>Title</title>
+</head>
+<body>
+<nav  th:fragment="menu(n)">
+    <ul>
+        <li class="nav-left">轻小说</li>
+        <div class="nav-right">
+
+            <div class="username"    th:unless="${#strings.isEmpty(session.user)}"  >
+                <img src="http://www.005.tv/uploads/allimg/170412/141T33A5-0.jpg" title="" th:unless="${#strings.isEmpty(session.user)}" th:title="${session.user.username}"  style="max-height: 30px;max-width: 30px;border-radius: 50%">
+                <span  th:text="${session.user.username}" name="user_name"></span>
+                <div class="username-myinformation">
+                    <a href="/u">个人中心</a>
+                </div>
+            </div>
+            <span th:unless="${not#strings.isEmpty(session.user)}">
+                <li class="nav-right-li" ><a  href="/login" >登录</a></li>
+                <li class="nav-right-li">|</li>
+                <li class="nav-right-li" ><a  href="/register" >注册</a></li>
+                  </span>
+        </div>
+    </ul>
+</nav>
+</body>
+</html>

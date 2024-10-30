@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" >
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+
+
+    <title>反馈列表</title>
+</head>
+<body>
+<table class="table table-hover">
+    <thead>
+    <tr>
+        <th>用户名</th>
+        <th>发送时间</th>
+        <th>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="list : ${list}">
+        <td th:text="${list.username}">User</td>
+        <td th:text="${list.createtime}">2020-02-28</td>
+        <td><a href="/admin/gettext" th:href="@{/admin/gettext(id=${list.id})}" id="a">查看详情</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

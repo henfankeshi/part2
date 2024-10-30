@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../static/css/semantic.min.css">
+    <script src="../../static/js/semantic.min.js"></script>
+    <link rel="icon" href="../../static/images/icon.png">
+    <title>精品力荐</title>
+</head>
+<body>
+<table class="ui celled table">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>关联漫画ID</th>
+        <th>漫画名称</th>
+        <th>作者</th>
+        <th>封面</th>
+        <th>操作</th>
+    </tr></thead>
+    <tbody>
+    <tr th:each="list : ${list}">
+        <td th:text="${list.r_id}">ID</td>
+        <td th:text="${list.m_id}">关联漫画ID</td>
+        <td th:text="${list.name}">漫画名称</td>
+        <td th:text="${list.author}">作者</td>
+        <td><img src="" th:src="${list.imgurl}" style="width:60px;height:60px"/></td>
+        <td><a href="/admin/deletere" th:href="@{/admin/deletere(id=${list.r_id})}" >删除</a></td>
+    </tr>
+    </tbody>
+    <tfoot>
+    </tfoot>
+</table>
+</body>
+</html>

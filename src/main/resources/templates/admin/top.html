@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>头部</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../static/css/semantic.min.css">
+    <link rel="icon" href="../../static/images/icon.png">
+    <script src="../../static/js/semantic.min.js"></script>
+    <style type="text/css">
+        body{
+            background-color: skyblue;
+        }
+        .top-img{
+            width: 150px;
+            height: 100%;
+            float: left;
+            background-color: gray;
+        }
+        .top-img img{
+            padding: 20px;
+        }
+        .admin{
+            width: 250px;
+            height: 100%;
+            float: right;
+        }
+        .img{
+            width: 130px;
+            height: 100%;
+            float: left;
+        }
+        .img img{
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            float: left;
+            cursor: pointer;
+        }
+        .img span{
+            float: left;
+            margin-top: 35px;
+            margin-bottom: 30px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+        <!--logo图片 -->
+      <div class="top-img">
+          <img src="../../static/images/logo2.png" alt="漫画堆后台管理系统" title="漫画堆后台管理系统">
+      </div>
+
+        <!--管理员头像 -->
+      <div class="admin">
+          <div class="img"><img src="../../static/images/mhd8.png"><span th:text="${session.admin.adminname}">111</span>
+
+          </div>
+         <a th:href="@{/admin/loginout}" target="_top"><button class="ui inverted red button" style="margin-top: 30px" >注销</button></a>
+      </div>
+</body>
+</html>

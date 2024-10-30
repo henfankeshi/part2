@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>漫画堆-后台管理</title>
+    <link rel="stylesheet" href="../../static/images/icon.png">
+    <link rel="icon" href="../../static/images/icon.png">
+</head>
+<frameset rows="88,*" cols="*" frameborder="no" border="0" framespacing="0">
+    <frame src="top.html" th:src="@{/admin/top}" name="topFrame" scrolling="no" noresize="noresize" id="topFrame" title="topFrame" />
+    <frameset cols="150,*"  frameborder="no" border="0" framespacing="0">
+        <frame src="left.html" th:src="@{/admin/left}" name="leftFrame" scrolling="no" noresize="noresize" id="leftFrame" title="leftFrame" />
+        <frame src="right.html" th:src="@{/admin/right}" name="rightFrame" id="rightFrame" title="rightFrame" />
+    </frameset>
+
+</frameset>
+<noframes>
+<body>
+</body>
+</noframes>
+</html>

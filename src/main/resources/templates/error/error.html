@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>错误</title>
+    <style type="text/css">
+        body{
+            font-family: serif;
+        }
+        a{
+            text-decoration: none;
+            color: #0C0C0C;
+        }
+        a:hover{
+            color: #0C0C0C;
+        }
+    </style>
+</head>
+<body>
+<div>
+    <center>
+    <h1>error...</h1>
+        <h1><span style="font-size: 100px">(:</span><a onclick="goback()" href="#" >返回上一页</a></h1>
+    </center>
+    <div th:utext="'&lt;!--'" th:remove="tag">
+    </div>
+    <div th:utext="'Failed Request URL : ' + ${url}" th:remove="tag">
+    </div>
+    <div th:utext="'Exception message : ' + ${exception.message}" th:remove="tag">
+
+    </div>
+    <ul th:remove="tag"> <li th:each="st : ${exception.stackTrace}" th:remove="tag">
+        <span th:utext="${st}" th:remove="tag"></span>
+    </li>
+</ul>
+    <div th:utext="'--&gt;'" th:remove="tag">
+   </div>
+    </div>
+<script>
+    function  goback() {
+        history.back();
+    }
+</script>
+</body>
+</html>

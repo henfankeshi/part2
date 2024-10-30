@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="http://cdn.javaex.cn/javaex/pc/css/icomoon.css" rel="stylesheet" />
+    <!--动画-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/animate.css" rel="stylesheet" />
+    <!--骨架样式-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/common.css" rel="stylesheet" />
+    <!--皮肤（缇娜）-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/skin/tina.css" rel="stylesheet" />
+    <!--jquery，不可修改版本-->
+    <script src="http://cdn.javaex.cn/javaex/pc/lib/jquery-1.7.2.min.js"></script>
+    <!--全局动态修改-->
+    <script src="http://cdn.javaex.cn/javaex/pc/js/common.js"></script>
+    <!--核心组件-->
+    <script src="http://cdn.javaex.cn/javaex/pc/js/javaex.min.js"></script>
+    <!--表单验证-->
+    <script src="http://cdn.javaex.cn/javaex/pc/js/javaex-formVerify.js"></script>
+    <title>更新漫画</title>
+</head>
+<body>
+<div><a href="/admin/comicmain" style="margin-top: 250px;"><<返回漫画列表</a></div>
+<div class="from" style="width: 400px;height: 600px;float: left;margin-left: 100px;">
+<form action="/admin/update" method="get" th:action="@{/admin/update}">
+    漫画名称:<input type="text" class="text" autocomplete="off" name="mhname" th:value="${list.mhname}"/><br>
+    作者名字:<input type="text" class="text" autocomplete="off" name="authorname"  th:value="${list.authorname}" style="margin-top: 5px;"/><br>
+    作品数量:<input type="text" class="text" autocomplete="off" name="size" th:value="${list.size}" id="size" style="margin-top: 5px;"/><br>
+    作者公告:<input type="text" class="text" autocomplete="off" name="announcement" th:value="${list.announcement}"  style="margin-top: 5px;"/><br>
+    作品状态:<input type="text" class="text" autocomplete="off" name="state" th:value="${list.state}"  style="margin-top: 5px;"/><br>
+    作品类别:<input type="text" class="text" autocomplete="off" name="category" th:value="${list.category}"  style="margin-top: 5px;"/><br>
+    作品类型:<input type="text" class="text" autocomplete="off" name="type" th:value="${list.type}"  style="margin-top: 5px;"/><br>
+    国家/地区:<input type="text" class="text" autocomplete="off" name="region" th:value="${list.region}"  style="margin-top: 5px;"/><br>
+    作品简介:<input type="text" class="text" autocomplete="off" name="Introduction" th:value="${list.Introduction}"  style="margin-top: 5px;"/><br>
+    作品别名:<input type="text" class="text" autocomplete="off" name="alias" th:value="${list.alias}"  style="margin-top: 5px;"/><br>
+    封面图片地址:<input type="text" class="text" autocomplete="off" name="imgurl" th:value="${list.imgurl}" style="margin-top: 5px;"/><br>
+    <input type="hidden" name="id" value="" th:value="${list.id}">
+    <button class="button blue" type="submit" style="margin-left: 80px;margin-top: 30px;">提交</button>
+
+</form>
+
+</div>
+<div class="img">
+    封面预览:<img style="width: 300px;height: 450px;" th:src="${list.imgurl}">
+</div>
+</body>
+</html>

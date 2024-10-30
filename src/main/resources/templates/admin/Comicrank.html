@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../static/css/semantic.min.css">
+    <script src="../../static/js/semantic.min.js"></script>
+    <link rel="icon" href="../../static/images/icon.png">
+    <title>漫画排行</title>
+</head>
+<body>
+<table class="ui celled table">
+    <thead>
+    <tr>
+        <th>排行</th>
+        <th>漫画ID</th>
+        <th>漫画名</th>
+        <th>已更新到多少话</th>
+        <th>操作</th>
+    </tr></thead>
+    <tbody>
+    <tr th:each="list:${c2}">
+        <td > <div class="ui ribbon label" th:text="${list.c_number}">第一</div></td>
+        <td th:text="${list.c_id}">1</td>
+        <td th:text="${list.c_name}">一拳超人</td>
+        <td th:text="${list.c_words}">222</td>
+        <td><a th:href="@{/admin/getid(c_id=${list.c_id})}" >更改排名</a></td>
+    </tr>
+
+    </tbody>
+    <tfoot>
+    <tr>
+    </tr></tfoot>
+</table>
+</body>
+</html>

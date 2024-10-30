@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="http://cdn.javaex.cn/javaex/pc/css/icomoon.css" rel="stylesheet" />
+    <!--动画-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/animate.css" rel="stylesheet" />
+    <!--骨架样式-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/common.css" rel="stylesheet" />
+    <!--皮肤（缇娜）-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/skin/tina.css" rel="stylesheet" />
+    <!--jquery，不可修改版本-->
+    <script src="http://cdn.javaex.cn/javaex/pc/lib/jquery-1.7.2.min.js"></script>
+    <!--全局动态修改-->
+    <script src="http://cdn.javaex.cn/javaex/pc/js/common.js"></script>
+    <!--核心组件-->
+    <script src="http://cdn.javaex.cn/javaex/pc/js/javaex.min.js"></script>
+    <!--表单验证-->
+    <script src="http://cdn.javaex.cn/javaex/pc/js/javaex-formVerify.js"></script>
+    <title>添加友情链接</title>
+</head>
+<body>
+<div style="margin-top: 20px;margin-left: 50px">
+<form action="/admin/add" method="get" th:action="@{/admin/add}">
+    网站名称:<input type="text" class="text" autocomplete="off" name="name" id="name"/><br>
+    网站域名:<input type="url" class="text" autocomplete="off" name="url" id="url" style="margin-top: 5px;"/><br>
+    <button class="button blue" type="submit" style="margin-left: 80px;margin-top: 30px;" onclick="return addcheck()">提交</button>
+</form>
+    <p th:text="${message}"></p>
+    <p></p>
+</div>
+<script>
+    function addcheck() {
+         var name = document.getElementById('name');
+         var url = document.getElementById('url');
+         if(name.value == "") {
+              alert("网站名称不能为空")
+              name.focus();
+              return false;
+         } if(url.value == "") {
+            alert("网站域名不能为空");
+            url.focus();
+            return false;
+        } else {
+             return true;
+        }
+    }
+</script>
+</body>
+</html>

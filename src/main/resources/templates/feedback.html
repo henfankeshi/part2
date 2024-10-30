@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css" >
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/bootstrap.min.js"></script>
+    <title>我要反馈</title>
+</head>
+<body>
+<form role="form" id="form" th:action="@{/addfeedback}" method="get">
+    <div class="form-group">
+        <label for="name">文本框</label>
+        <textarea class="form-control" rows="3" placeholder="你有什么想说的呢" id="textfile" name="textfile"></textarea>
+    </div>
+    <button type="submit" class="btn btn-info" onclick="return check()">提交</button>
+    <p style="color: red" id="p"></p>
+    <p style="color: red" id="p1" th:text="${message}"></p>
+</form>
+<script>
+     function check() {
+          var textfile = document.getElementById('textfile');
+          if(textfile.value == "") {
+               document.getElementById('p').innerText="提交的内容不能为空";
+               textfile.focus();
+               return false;
+          } else  {
+              return true;
+          }
+     }
+     // function go() {
+     //     window.location.href="/feedback";
+     // }
+     // $("#form").submit(function () {
+     //    var textfile = document.getElementById('textfile');
+     //
+     //    $.ajax({
+     //        url:"/addfeedback",
+     //        data:{textfile:textfile},
+     //        type:"GET",
+     //        dataType:"text",
+     //        success: function (data) {
+     //             if(data.trim()=="ok") {
+     //                 var str = "反馈成功";
+     //                 document.getElementById('p1').innerText=str;
+     //                 go();
+     //             } else {
+     //                 var str = "反馈失败";
+     //                 document.getElementById('p1').innerText=str;
+     //             }
+     //        }
+     //    });
+     // });
+</script>
+</body>
+</html>

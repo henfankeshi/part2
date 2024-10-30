@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link href="http://cdn.javaex.cn/javaex/pc/css/icomoon.css" rel="stylesheet" />
+    <!--动画-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/animate.css" rel="stylesheet" />
+    <!--骨架样式-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/common.css" rel="stylesheet" />
+    <!--皮肤（缇娜）-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/skin/tina.css" rel="stylesheet" />
+    <!--jquery，不可修改版本-->
+    <script src="http://cdn.javaex.cn/javaex/pc/lib/jquery-1.7.2.min.js"></script>
+    <!--全局动态修改-->
+    <script src="http://cdn.javaex.cn/javaex/pc/js/common.js"></script>
+    <!--核心组件-->
+    <script src="http://cdn.javaex.cn/javaex/pc/js/javaex.min.js"></script>
+    <!--表单验证-->
+    <script src="http://cdn.javaex.cn/javaex/pc/js/javaex-formVerify.js"></script>
+    <title>添加漫画</title>
+</head>
+<body>
+<form action="/admin/AddComicCheck" method="get" th:action="@{/admin/AddComicCheck}" >
+    漫画名称:<input type="text" class="text" autocomplete="off" name="mhname" id="name"/><br>
+    作者名字:<input type="text" class="text" autocomplete="off" name="authorname" id="authorname" style="margin-top: 5px;"/><br>
+    作品数量:<input type="text" class="text" autocomplete="off" name="size" id="size" style="margin-top: 5px;"/><br>
+    作者公告:<input type="text" class="text" autocomplete="off" name="announcement" id="announcement" style="margin-top: 5px;"/><br>
+    作品状态:<input type="text" class="text" autocomplete="off" name="state" id="state" style="margin-top: 5px;"/><br>
+    作品类别:<input type="text" class="text" autocomplete="off" name="category" id="category" style="margin-top: 5px;"/><br>
+    作品类型:<input type="text" class="text" autocomplete="off" name="type" id="type" style="margin-top: 5px;"/><br>
+    国家/地区:<input type="text" class="text" autocomplete="off" name="region" id="region" style="margin-top: 5px;"/><br>
+    作品简介:<input type="text" class="text" autocomplete="off" name="Introduction" id="Introduction" style="margin-top: 5px;"/><br>
+    作品别名:<input type="text" class="text" autocomplete="off" name="alias" id="alias" style="margin-top: 5px;"/><br>
+    封面图片地址:<input type="text" class="text" autocomplete="off" name="imgurl" id="imgurl" style="margin-top: 5px;"/><br>
+    <button class="button blue" type="submit" style="margin-left: 80px;margin-top: 30px;" onclick="return form()">提交</button>
+</form>
+
+<p th:text="${message}"></p>
+<p th:text="${error}"></p>
+<script>
+    function form() {
+        var mhname = document.getElementById("name");
+        var authorname = document.getElementById('authorname');
+        var size = document.getElementById('size');
+        var announcement = document.getElementById('announcement');
+        var state = document.getElementById('state');
+        var category = document.getElementById('category');
+        var type = document.getElementById('type');
+        var region = document.getElementById('region');
+        var Introduction = document.getElementById('Introduction');
+        var alias = document.getElementById('alias');
+        var imgurl = document.getElementById('imgurl');
+
+        if(mhname.value == "") {
+             alert("漫画名称不能为空");
+             mhname.focus();
+             return false;
+        } else if(authorname.value == "") {
+            alert("作者名字不能为空");
+            authorname.focus();
+            return false;
+        } else if(size.value == "") {
+            alert("作品数量不能为空");
+            size.focus();
+            return false;
+        } else if(announcement.value == "") {
+            alert("公告不能为空");
+            announcement.focus();
+            return false;
+        } else if(state.value == "") {
+            alert("作品状态不能为空");
+            state.focus();
+            return false;
+        } else if(category.value == "") {
+            alert("漫画类别不能为空");
+            category.focus();
+            return false;
+        } else if(type.value == "") {
+            alert("漫画类型不能为空");
+            type.focus();
+            return false;
+        } else if(region.value == "") {
+            alert("国家/地区不能为空");
+            region.focus();
+            return false;
+        } else if(Introduction.value == "") {
+            alert("简介不能为空");
+            Introduction.focus();
+            return false;
+        } else if(alias.value == "") {
+            alert("别名不能为空");
+            alias.focus();
+            return false;
+        } else if(imgurl.value == "") {
+            alert("图片地址不能为空");
+            imgurl.focus();
+            return false;
+        } else {
+            return true;
+        }
+    }
+</script>
+</body>
+</html>

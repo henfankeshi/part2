@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="../static/css/index.css">
+    <link rel="shortcut icon" href="../static/images/icon.png" type="image/x-icon">
+    <title>进击的巨人</title>
+    <style>
+        .username{
+            position: relative;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .username-myinformation{
+            display: none;
+            position: absolute;
+            background-color: whitesmoke;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            min-width: 70px;
+            min-height: 20px;
+            border-top: 1px black solid;
+        }
+        .username-myinformation a{
+            color: black;
+            text-decoration: none;
+            display: block;
+        }
+        .username:hover .username-myinformation{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+      <!--导航-->
+      <div class="manhua-daohang" th:replace="_fragments :: menu(1)">
+           <span style="padding-left: 300px;"><a href="#">轻小说</a></span>
+           <span style="padding-left: 920px;"><a href="/login">登录</a></span>
+           <span style="color: white;padding-left: 10px;">|</span>
+           <span style="padding-left: 10px;"><a href="/register">注册</a></span>
+      </div>
+      <!--位置-->
+
+      <!--<nav>-->
+          <!--<ul>-->
+              <!--<li class="nav-left">轻小说</li>-->
+              <!--<div class="nav-right">-->
+
+                  <!--<div class="username"    th:unless="${#strings.isEmpty(session.user)}"  >-->
+                      <!--<img src="http://www.005.tv/uploads/allimg/170412/141T33A5-0.jpg" title="" th:unless="${#strings.isEmpty(session.user)}" th:title="${session.user.username}"  style="max-height: 30px;max-width: 30px;border-radius: 50%">-->
+                      <!--<span  th:text="${session.user.username}" name="user_name"></span>-->
+                      <!--<div class="username-myinformation">-->
+                          <!--<a href="/u">个人中心</a>-->
+                      <!--</div>-->
+                  <!--</div>-->
+                  <!--<span th:unless="${not#strings.isEmpty(session.user)}">-->
+                <!--<li class="nav-right-li" ><a  href="/login" >登录</a></li>-->
+                <!--<li class="nav-right-li">|</li>-->
+                <!--<li class="nav-right-li" ><a  href="/register" >注册</a></li>-->
+                  <!--</span>-->
+              <!--</div>-->
+          <!--</ul>-->
+      <!--</nav>-->
+
+      <div class="manhua-weizhi">
+          <p>进击的巨人- 124话东立版</p>
+      </div>
+      <!--漫画章节选择-->
+      <div class="manhua-zhangjie">
+            <span style="float: left;line-height: 125px;">上一章节：<a href="#">123话东立版</a></span>
+            <span style="float: right;line-height: 125px;">下一章节：<a href="#">124话东立版</a></span>
+      </div>
+      <!--漫画图片-->
+      <div class="manhua-img" th:each="imglist : ${list}">
+          <img src="../static/picture/jinjip1.jpg" th:src="${imglist.imgurl}" style="text-align: center;padding: 20px;">
+      </div>
+      <!--下一页-->
+      <div class="next">
+          <p style="font-size: 12px;">(<span th:text="${number}"></span>)</p>
+          <div class="zhangshu">
+              <a href="" class="zhangshu-a" >上一页</a>
+          <select name="yeshu" id="page-select">
+              <option value="第1页">第1页</option>
+              <option value="第2页">第2页</option>
+              <option value="第3页">第3页</option>
+              <option value="第4页">第4页</option>
+          </select>
+              <a href="" class="zhangshu-a" >下一页</a>
+          </div>
+      </div>
+      <!--推荐-->
+      <div class="botton">
+          <div class="button-top">
+                <div class="sg"></div>
+                <p class="button-text">看过<span style="color: #1790e6;">《进击的巨人》</span>的人还看过</p>
+          </div>
+          <div class="button-images">
+              <ul>
+                  <li><a href="#"><img src="../static/picture/yuzhouelingqishji.jpg"></a><p><a href="#" title="宇宙恶灵骑士的复仇">宇宙恶灵骑士的复仇</a></p></li>
+                  <li><a href="#"><img src="../static/picture/didushengbei.jpg"></a><p><a href="#" title="帝都圣杯奇谈">帝都圣杯奇谈</a></p></li>
+                  <li><a href="#"><img src="../static/picture/bujuedecunzhuang.jpg"><p><a href="#" title="不觉得村庄建造游戏的npc也是活生生的人吗">不觉得村庄建造游戏的npc也是活生生的人吗</a></p></li>
+                  <li><a href="#"><img src="../static/picture/guikudetongnv.jpg"></a><p><a href="#" title="鬼咒童女">鬼咒童女</a></p></li>
+                  <li><a href="#"><img src="../static/picture/wanjiexianwang.jpg"></a><p><a href="#" title="宇宙恶灵骑士的复仇">宇宙恶灵骑士的复仇</a></p></li>
+                  <li><a href="#"><img src="../static/picture/yuzhouelingqishji.jpg"></a><p><a href="#" title="宇宙恶灵骑士的复仇">宇宙恶灵骑士的复仇</a></p></li>
+              </ul>
+          </div>
+      </div>
+      <!--底部-->
+      <div class="foot">
+          <p>所有漫画均来自网友分享，以便漫画爱好者研究漫画技巧和构图方式。若喜欢，请购买正版书籍以支持作者！漫画版权归原作者所有。如有侵犯到您的权益，请联系我们，确认之后立即删除。本<br>站不负任何相关责任！ | ©2019 <a href="" th:href="@{/}" style="color: #1790e6;text-decoration: none;">漫画堆</a></p>
+      </div>
+</body>
+</html>

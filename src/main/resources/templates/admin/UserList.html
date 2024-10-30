@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../../static/css/semantic.min.css">
+    <script src="../../static/js/semantic.min.js"></script>
+    <link rel="icon" href="../../static/images/icon.png">
+
+    <!--加入Javaex框架-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/icomoon.css" rel="stylesheet" />
+    <!--动画-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/animate.css" rel="stylesheet" />
+    <!--骨架样式-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/common.css" rel="stylesheet" />
+    <!--皮肤（缇娜）-->
+    <link href="http://cdn.javaex.cn/javaex/pc/css/skin/tina.css" rel="stylesheet" />
+    <!--jquery，不可修改版本-->
+    <script src="http://cdn.javaex.cn/javaex/pc/lib/jquery-1.7.2.min.js"></script>
+    <!--全局动态修改-->
+    <script src="http://cdn.javaex.cn/javaex/pc/js/common.js"></script>
+    <!--核心组件-->
+    <script src="http://cdn.javaex.cn/javaex/pc/js/javaex.min.js"></script>
+    <!--表单验证-->
+    <script src="http://cdn.javaex.cn/javaex/pc/js/javaex-formVerify.js"></script>
+    <title>用户管理</title>
+</head>
+<body>
+<table class="ui celled table">
+    <thead>
+
+    <form action="/admin/serachuser" method="get" th:action="@{/admin/serachuser}">
+        <input type="search" class="text" placeholder="搜索用户名/ID" autocomplete="off" name="inputtext" id="a"/>
+        <button type="submit" class="button gray" style="margin-left:3px;" onclick="return serachcheck()">搜索</button>
+        <script>
+            function serachcheck() {
+                var a = document.getElementById('a');
+                if(a.value == "") {
+                    alert("搜索框不能为空");
+                    a.focus();
+                    return false;
+                } else {
+                    return true;
+                }
+            }
+        </script>
+    </form>
+    <tr>
+        <th>ID</th>
+        <th>用户名</th>
+        <th>操作</th>
+    </tr></thead>
+    <tbody>
+    <tr th:each="list : ${page.list}">
+        <td th:text="${list.u_id}">id</td>
+        <td th:text="${list.username}">漫画名称</td>
+        <td><a href="" th:href="@{/admin/deleteUser(u_id=${list.u_id})}" name="u_id">删除该用户</a></td>
+    </tr>
+
+
+    </tbody>
+    <tfoot>
+    <tr>
+
+    </tr></tfoot>
+</table>
+<div >
+    <th>
+        <a href="" th:href="@{/admin/UserList(start=0)}"><button class="ui primary basic button">首页</button></a>
+        <a href="" th:href="@{/admin/UserList(start=${page.pageNum-1})}"><button class="ui secondary basic button">上一页</button></a>
+        <a href="" th:href="@{/admin/UserList(start=${page.pageNum+1})}" ><button class="ui secondary basic button">下一页</button></a>
+        <a href="" th:href="@{/admin/UserList(start=${page.pages})}" ><button class="ui primary basic button">末页</button></a>
+    </th>
+</div>
+
+</body>
+</html>
